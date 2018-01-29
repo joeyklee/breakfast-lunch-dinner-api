@@ -108,7 +108,7 @@ app.get('/api/activities/ratings/gte/:rating', function(req, res) {
 // });
 
 
-app.set('port', (process.env.PORT || 5000));
-app.listen(app.get('port'), function() {
+// app.set('port', (process.env.PORT || 5000));
+app.listen(process.env.PORT, function() {
   console.log('Node app is running on port', app.get('port'));
 });
