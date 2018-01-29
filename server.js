@@ -9,7 +9,7 @@ var mongojs = require('mongojs');
 
 // Here we find an appropriate database to connect to, defaulting to
 // localhost if we don't find one.  
-var MONGOCONNECTION = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/bld';
+var MONGOCONNECTION = process.env.MONGODB_URI || 'mongodb://localhost:27017/bld';
 var db = mongojs(MONGOCONNECTION);
 // // CHANGE THE NAME OF THE DATABASE!!!
 var PROJECTDB = db.collection('breakfast-lunch-dinner');
@@ -37,19 +37,6 @@ function findAll(collection, query, res) {
     }
   );
 };
-
-function findAllWithProjection(collection, query, res) {
-  collection.find(
-    query, function(err, docs) {
-      if (err) { return mongoError(res, err); };
-      // if nothing is found (doc === null) return empty array
-      console.log(docs)
-      res.send(docs === null ? [] : docs);
-    }
-  );
-};
-
-
 
 app.use('/', express.static('static'));
 
